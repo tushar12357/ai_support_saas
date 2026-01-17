@@ -1,0 +1,25 @@
+{
+  "name": "ai-agent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@livekit/rtc-node": "^0.13.24",
+    "dotenv": "^17.2.3",
+    "livekit-server-sdk": "^2.15.0",
+    "wav": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "@types/wav": "^1.0.4",
+    "tsx": "^4.21.0"
+  }
+}

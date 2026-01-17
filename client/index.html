@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LiveKit Audio Test</title>
+  </head>
+  <body>
+    <h2>LiveKit Audio Call</h2>
+    <button id="join">Join Call</button>
+
+    <script type="module">
+      import {
+        Room,
+        RoomEvent,
+        createLocalAudioTrack,
+      } from "https://unpkg.com/livekit-client/dist/livekit-client.esm.mjs";
+
+      const joinBtn = document.getElementById("join");
+
+      joinBtn.onclick = async () => {
+        // 1️⃣ Fetch LiveKit token
+        const res = await fetch("http://localhost:4000/media/token", {
+          method: "POST",
+        });
+        const { token } = await res.json();
+
+        // 2️⃣ Create room
+        const room = new Room();
+
+        // 3️⃣ Connect to LiveKit
+        await room.connect("ws://localhost:7880", token);
+        console.log("Connected to room:", room.name);
+
+        // 4️⃣ Create & publish mic audio
+        const audioTrack = await createLocalAudioTrack();
+        await room.localParticipant.publishTrack(audioTrack);
+        console.log("Microphone published");
+
+        // 5️⃣ Play remote audio
+        room.on(RoomEvent.TrackSubscribed, (track) => {
+          if (track.kind === "audio") {
+            track.attach();
+            console.log("Remote audio attached");
+          }
+        });
+      };
+    </script>
+  </body>
+</html>

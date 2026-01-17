@@ -1,0 +1,10 @@
+{
+  "call_id": "call_123",
+  "intent": "refund",
+  "sentiment": "frustrated",
+  "escalation": true,
+  "summary": [
+    "Customer intent detected: refund"
+  ],
+  "last_updated": "2026-01-16T16:58:23.603783"
+}

@@ -1,0 +1,25 @@
+port: 7880
+
+rtc:
+  use_external_ip: false
+  tcp_port: 7881
+  udp_port: 0
+
+
+
+  turn_servers:
+    - host: host.docker.internal
+      port: 3478
+      protocol: udp
+      username: test
+      credential: testpass
+
+
+keys:
+  devkey: devsecret_32_characters_minimum_123
+
+room:
+  auto_create: true
+
+redis:
+  address: host.docker.internal:6379
